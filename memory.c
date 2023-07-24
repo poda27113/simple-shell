@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 /**
  * The code defines a function `int bfree(void **ptr)` that takes a double pointer as an argument.
  * The function checks if the pointer `ptr` is not NULL and if the value it points to (`*ptr`) is also not NULL.

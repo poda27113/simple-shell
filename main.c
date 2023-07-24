@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * This is the main function of the program. It takes command-line arguments 'ac' (argument count) and 'av' (argument vector) to handle input parameters.

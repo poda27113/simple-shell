@@ -50,7 +50,7 @@ int _atoi(char *s)
 	int b, sign = 1, flag = 0, output;
 	unsigned int result = 0;
 
-	for (b = 0; s[b] != '\0' && flag != 2; i++)
+	for (b = 0; s[b] != '\0' && flag != 2; b++)
 	{
 		if (s[b] == '-')
 			sign *= -1;
