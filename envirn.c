@@ -7,8 +7,8 @@ int main(void)
 	char *name, *value;
 	/* Populate the linked list with environment variables.*/
 
-	int 1;
-	for (int i = 0; environ[i]; i++)
+	int i = 0;
+	for (i = 0; environ[i]; i++)
 	{
 		var = malloc(sizeof(struct env_var));
 		name = environ[i];

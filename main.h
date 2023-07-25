@@ -124,6 +124,14 @@ extern char **environ;
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
 			0, 0, 0}
 
+		/* main.h */
+
+
+/* Function prototypes */
+int _myenv(info_t *info);
+int _tell(info_t *info);
+int _myhelp(info_t *info);
+
 
 		/* get_builtin */
 int (*get_builtin(char *cmd))(info_t *info);
@@ -229,8 +237,8 @@ int populate_env_list(info_t *);
 
 /* toem_getenv.c */
 char **get_environ(info_t *);
-int _unsetenv(info_t *, char *);
-int _setenv(info_t *, char *, char *);
+int _unsetenv(info_t *info, char *);
+int _setenv(info_t *info, char *, char *);
 
 /* toem_history.c */
 char *get_history_file(info_t *info);
@@ -261,3 +269,4 @@ int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 #endif
+
