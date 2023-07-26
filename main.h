@@ -103,11 +103,9 @@ typedef struct info_t
 
 
 extern void _eputs(char *);
-extern int _eputchar(char);
-extern int populate_env_list(info_t *);
 extern int read_history(info_t *);
-extern int hsh(info_t *, char **);
-
+extern int hsh(info_t *, char **av);
+extern int populate_env_list(info_t *info);
 
 /* 1 if using system getline() */
 #define USE_GETLINE 0
@@ -129,8 +127,8 @@ extern char **environ;
 
 /* Function prototypes */
 int _myenv(info_t *info);
-int _tell(info_t *info);
 int _myhelp(info_t *info);
+
 
 
 		/* get_builtin */
@@ -148,7 +146,7 @@ typedef struct builtin
 
 
 /* toem_shloop.c */
-int hsh(info_t *, char **);
+int hsh(info_t *, char **av);
 int find_builtin(info_t *);
 void find_cmd(info_t *);
 void fork_cmd(info_t *);
@@ -166,6 +164,17 @@ void _eputs(char *);
 int _eputchar(char);
 int _putfd(char c, int fd);
 int _putsfd(char *str, int fd);
+
+/* Function to print a string to the standard error */
+void _eputs(char *str) {
+	    fprintf(stderr, "%s", str);
+}
+
+/* Function to print a character to the standard error */
+int _eputchar(char c) {
+	    return fputc(c, stderr);
+}
+
 
 /* toem_string.c */
 int _strlen(char *);
@@ -230,7 +239,7 @@ void free_info(info_t *, int);
 
 /* toem_environ.c */
 char *_getenv(info_t *, const char *);
-int _myenv(info_t *);
+int _myenv(info_t *info);
 int _mysetenv(info_t *);
 int _myunsetenv(info_t *);
 int populate_env_list(info_t *);
@@ -269,4 +278,3 @@ int replace_vars(info_t *);
 int replace_string(char **, char *);
 
 #endif
-
