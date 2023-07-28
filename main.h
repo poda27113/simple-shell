@@ -2,19 +2,24 @@
 #define _MAIN_H_
 
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
+#include <stdlib.h>
 #include <string.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
-#include <limits.h>
-#include <fcntl.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <signal.h>
+#include <limits.h>
+
 
 /* for read/write buffers */
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
+#define TOK_BUFSIZE 128
+#define TOK_DELIM " \t\r\n\a"
 
 /* for command chaining */
 #define CMD_NORM	0
@@ -116,7 +121,11 @@ extern int populate_env_list(info_t *info);
 
 extern char **environ;
 
+int *read_link(info_t *, char *i_eof);
 
+/* Function declarations*/
+ char *no_comment(char *in);
+ void shell_lop(info_t *info);
 
 #define INFO_INIT \
 {NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
@@ -158,6 +167,10 @@ char *find_path(info_t *, char *, char *);
 
 /* loophsh.c */
 int loophsh(char **);
+
+/* shell_loop.c */
+char *no_comment(char *in);
+void shell_lop(info_t *info);
 
 /* toem_errors.c */
 void _eputs(char *);
@@ -251,7 +264,7 @@ int _setenv(info_t *info, char *, char *);
 
 /* toem_history.c */
 char *get_history_file(info_t *info);
-int write_history(info_t *info);
+int write_history(void);
 int read_history(info_t *info);
 int build_history_list(info_t *info, char *buf, int linecount);
 int renumber_history(info_t *info);
