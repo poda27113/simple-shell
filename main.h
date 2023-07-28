@@ -1,6 +1,7 @@
 #ifndef _MAIN_H
 #define _MAIN_H_
 
+#include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -122,6 +123,11 @@ extern int populate_env_list(info_t *info);
 extern char **environ;
 
 int *read_link(info_t *, char *i_eof);
+
+/* Function prototype */
+ssize_t my_getline(int fd, char **line, size_t *len, ssize_t bytes_read);
+void process_char(char current_char);
+
 
 /* Function declarations*/
  char *no_comment(char *in);
